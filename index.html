@@ -1,0 +1,530 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#020b08">
+<title>SHAKIL'S SYSTEM</title>
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="stylesheet"
+ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --green: #00ff99;
+  --bg: #020b08;
+}
+
+body {
+  min-height: 100vh;
+  padding: 25px 16px 35px;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(ellipse at 50% 0%, #063d29 0%, transparent 48%),
+    radial-gradient(ellipse at 0% 65%, #05251b 0%, transparent 35%),
+    var(--bg);
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .3;
+  background-image:
+    radial-gradient(#00ff99 1px, transparent 1px);
+  background-size: 38px 38px;
+}
+
+.container {
+  max-width: 1050px;
+  width: 100%;
+  margin: auto;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 10px 0 24px;
+  border-bottom: 1px solid #00ff9933;
+}
+
+.logo-ring {
+  position: relative;
+  width: 66px;
+  height: 66px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  padding: 3px;
+  isolation: isolate;
+}
+
+.logo-ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--angle),
+    #00ff88,
+    #00eaff,
+    #b000ff,
+    #ffea00,
+    #00ff88
+  );
+  animation: spin 2s linear infinite;
+  box-shadow: 0 0 15px #00ff99aa;
+  z-index: -1;
+}
+
+.logo-ring img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #03130c;
+  background: #03130c;
+}
+
+.brand h2 {
+  font-size: clamp(19px, 4vw, 29px);
+  letter-spacing: 1px;
+}
+
+.brand h2 span {
+  color: var(--green);
+}
+
+.brand p {
+  margin-top: 6px;
+  color: #75e9c4;
+  font-size: 11px;
+  letter-spacing: 5px;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 48px 0 38px;
+}
+
+.hero-logo {
+  width: 142px;
+  height: 142px;
+  margin: 0 auto 23px;
+  padding: 5px;
+  position: relative;
+  isolation: isolate;
+  border-radius: 50%;
+}
+
+.hero-logo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--angle),
+    #00ff99,
+    #00eaff,
+    #7900ff,
+    #ff00aa,
+    #ffe600,
+    #00ff99
+  );
+  animation: spin 2.5s linear infinite;
+  box-shadow:
+    0 0 15px #00ff99,
+    0 0 35px #00ff9966;
+  z-index: -1;
+}
+
+.hero-logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #04150e;
+  background: #03110b;
+}
+
+.hero h1 {
+  font-size: clamp(28px, 6vw, 52px);
+  font-weight: 900;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  text-shadow: 0 0 18px #00ff9922;
+}
+
+.hero h1 span {
+  color: var(--green);
+}
+
+.hero p {
+  color: #75ffe0;
+  font-size: clamp(11px, 2.7vw, 15px);
+  letter-spacing: clamp(2px, 1vw, 6px);
+  line-height: 1.8;
+  margin-top: 15px;
+}
+
+/* SOCIAL GRID */
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+  padding: 12px 0 55px;
+}
+
+/* ROTATING NEON CARD */
+.social-card {
+  --neon: #00ff99;
+  --angle: 0deg;
+
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  padding: 27px 18px 24px;
+  text-align: center;
+  border-radius: 24px;
+  background: rgba(3, 22, 15, .92);
+  border: 1px solid #ffffff13;
+  overflow: hidden;
+  transition: transform .3s ease;
+}
+
+.social-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--angle),
+    transparent 0deg,
+    transparent 35deg,
+    var(--neon) 75deg,
+    #ffffff 90deg,
+    var(--neon) 115deg,
+    transparent 155deg,
+    transparent 240deg,
+    var(--neon) 290deg,
+    transparent 330deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: spin 3s linear infinite;
+  z-index: -1;
+}
+
+.social-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at 50% 0%,
+    color-mix(in srgb, var(--neon) 13%, transparent),
+    transparent 65%
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
+.social-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 0 28px color-mix(in srgb, var(--neon) 30%, transparent);
+}
+
+.social-card:nth-child(2)::before { animation-duration: 2.5s; }
+.social-card:nth-child(3)::before { animation-duration: 3.4s; }
+.social-card:nth-child(4)::before { animation-duration: 2.7s; }
+.social-card:nth-child(5)::before { animation-duration: 3.2s; }
+.social-card:nth-child(6)::before { animation-duration: 2.8s; }
+
+/* BRAND COLORS */
+.instagram { --neon: #ff29ad; }
+.facebook  { --neon: #1685ff; }
+.telegram  { --neon: #00eaff; }
+.whatsapp  { --neon: #00ff72; }
+.tiktok    { --neon: #e600ff; }
+.youtube   { --neon: #ff253f; }
+
+/* ICONS */
+.social-icon {
+  width: 78px;
+  height: 78px;
+  margin: 0 auto 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 40px;
+  background: color-mix(in srgb, var(--neon) 13%, #03120d);
+  color: var(--neon);
+  border: 1px solid color-mix(in srgb, var(--neon) 60%, transparent);
+  box-shadow:
+    0 0 18px color-mix(in srgb, var(--neon) 28%, transparent),
+    inset 0 0 15px color-mix(in srgb, var(--neon) 9%, transparent);
+  transition: .3s ease;
+}
+
+.social-card:hover .social-icon {
+  transform: scale(1.08);
+  box-shadow: 0 0 28px var(--neon);
+}
+
+.social-card h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.handle {
+  min-height: 23px;
+  color: #a3f7df;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+  margin-bottom: 22px;
+}
+
+/* BUTTONS */
+.action {
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #00130b;
+  background: var(--neon);
+  font-size: 17px;
+  font-weight: 800;
+  border-radius: 30px;
+  border: 1px solid color-mix(in srgb, var(--neon) 70%, white);
+  box-shadow: 0 0 15px color-mix(in srgb, var(--neon) 30%, transparent);
+  transition: .25s ease;
+}
+
+.action:hover {
+  filter: brightness(1.16);
+  box-shadow: 0 0 25px var(--neon);
+  transform: scale(1.025);
+}
+
+/* FOOTER */
+.footer {
+  border: 1px solid #00ff9955;
+  border-radius: 28px;
+  text-align: center;
+  padding: 25px 12px;
+  background: #02120caa;
+  box-shadow: 0 0 20px #00ff9910;
+}
+
+.footer p {
+  color: #8dffe1;
+  line-height: 2;
+  letter-spacing: 2px;
+  font-size: 13px;
+}
+
+.footer .heart {
+  color: #00ff99;
+  font-size: 19px;
+}
+
+.footer .copyright {
+  font-size: 11px;
+  letter-spacing: 3px;
+}
+
+/* SMOOTH ROTATION */
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes spin {
+  to { --angle: 360deg; }
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+  .social-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+  }
+
+  .social-card {
+    padding: 23px 12px 19px;
+    border-radius: 20px;
+  }
+
+  .social-icon {
+    width: 65px;
+    height: 65px;
+    font-size: 33px;
+  }
+
+  .social-card h3 {
+    font-size: 18px;
+  }
+
+  .handle {
+    font-size: 12px;
+  }
+
+  .action {
+    min-height: 43px;
+    font-size: 15px;
+  }
+
+  .hero {
+    padding-top: 38px;
+  }
+
+  .hero-logo {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 360px) {
+  .social-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .social-card::before,
+  .hero-logo::before,
+  .logo-ring::before {
+    animation-duration: 12s;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  <header class="header">
+    <div class="logo-ring">
+      <img src="logo.png" alt="Shakil Logo">
+    </div>
+    <div class="brand">
+      <h2>SHAKIL'S <span>SYSTEM</span></h2>
+      <p>MY SOCIAL WORLD</p>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-logo">
+      <img src="logo.png" alt="SHAKIL'S SYSTEM Logo">
+    </div>
+
+    <h1>SHAKIL'S <span>SYSTEM</span></h1>
+    <p>CONNECT &nbsp; • &nbsp; FOLLOW &nbsp; • &nbsp; BE PART OF MY WORLD</p>
+  </section>
+
+  <main class="social-grid">
+
+    <article class="social-card instagram">
+      <div class="social-icon">
+        <i class="fa-brands fa-instagram"></i>
+      </div>
+      <h3>Instagram</h3>
+      <p class="handle">@ur_shakil9</p>
+      <a class="action"
+         href="https://www.instagram.com/ur_shakil9/"
+         target="_blank" rel="noopener noreferrer">Follow</a>
+    </article>
+
+    <article class="social-card facebook">
+      <div class="social-icon">
+        <i class="fa-brands fa-facebook-f"></i>
+      </div>
+      <h3>Facebook</h3>
+      <p class="handle">My Profile</p>
+      <a class="action"
+         href="https://www.facebook.com/profile.php?id=61582238862175"
+         target="_blank" rel="noopener noreferrer">Visit</a>
+    </article>
+
+    <article class="social-card telegram">
+      <div class="social-icon">
+        <i class="fa-brands fa-telegram"></i>
+      </div>
+      <h3>Telegram</h3>
+      <p class="handle">@amshakil</p>
+      <a class="action"
+         href="https://t.me/amshakil"
+         target="_blank" rel="noopener noreferrer">Join</a>
+    </article>
+
+    <article class="social-card whatsapp">
+      <div class="social-icon">
+        <i class="fa-brands fa-whatsapp"></i>
+      </div>
+      <h3>WhatsApp</h3>
+      <p class="handle">+8801875682306</p>
+      <a class="action"
+         href="https://wa.me/8801875682306"
+         target="_blank" rel="noopener noreferrer">Message</a>
+    </article>
+
+    <article class="social-card tiktok">
+      <div class="social-icon">
+        <i class="fa-brands fa-tiktok"></i>
+      </div>
+      <h3>TikTok</h3>
+      <p class="handle">@ursh4kil</p>
+      <a class="action"
+         href="https://www.tiktok.com/@ursh4kil"
+         target="_blank" rel="noopener noreferrer">Follow</a>
+    </article>
+
+    <article class="social-card youtube">
+      <div class="social-icon">
+        <i class="fa-brands fa-youtube"></i>
+      </div>
+      <h3>YouTube</h3>
+      <p class="handle">@spidey_shakil23</p>
+      <a class="action"
+         href="https://youtube.com/@spidey_shakil23?si=tqefDUlW1rgHripJ"
+         target="_blank" rel="noopener noreferrer">Subscribe</a>
+    </article>
+
+  </main>
+
+  <footer class="footer">
+    <p>Made with <span class="heart">♥</span> by Shakil</p>
+    <p class="copyright">© 2026 SHAKIL'S SYSTEM</p>
+  </footer>
+
+</div>
+</body>
+</html>
